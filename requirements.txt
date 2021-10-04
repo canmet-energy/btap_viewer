@@ -1,86 +1,10 @@
-appdirs @ file:///home/conda/feedstock_root/build_artifacts/appdirs_1603108395799/work
-asn1crypto @ file:///home/conda/feedstock_root/build_artifacts/asn1crypto_1595949944546/work
-asttokens @ file:///home/conda/feedstock_root/build_artifacts/asttokens_1618968359944/work
-autograd==1.3
-boto3 @ file:///tmp/build/80754af9/boto3_1629142476879/work
-botocore @ file:///home/conda/feedstock_root/build_artifacts/botocore_1632782434050/work
-Bottleneck @ file:///C:/ci/bottleneck_1607557040328/work
-Brotli @ file:///D:/bld/brotli-split_1625213738974/work
-brotlipy==0.7.0
-certifi==2021.5.30
-cffi @ file:///D:/bld/cffi_1631636410239/work
-chardet @ file:///D:/bld/chardet_1610093673558/work
-charset-normalizer @ file:///home/conda/feedstock_root/build_artifacts/charset-normalizer_1626371162869/work
-click @ file:///D:/bld/click_1621503904640/work
-cma==2.7.0
-colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1602866480661/work
-conda==4.10.3
-conda-package-handling @ file:///D:/bld/conda-package-handling_1618231584104/work
-cryptography @ file:///D:/bld/cryptography_1616851819782/work
-cycler==0.10.0
 dash==2.0.0
 dash-bootstrap-components==1.0.0b3
 dash-core-components==2.0.0
 dash-html-components==2.0.0
 dash-renderer==1.1.2
 dash-table==5.0.0
-dataclasses @ file:///home/conda/feedstock_root/build_artifacts/dataclasses_1628958434797/work
-docker @ file:///C:/ci/docker-py_1614174490925/work
-docker-pycreds==0.4.0
-et-xmlfile==1.0.1
-executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1631486692433/work
-Flask @ file:///home/conda/feedstock_root/build_artifacts/flask_1621629915293/work
-Flask-Compress @ file:///home/conda/feedstock_root/build_artifacts/flask-compress_1623842138238/work
-future @ file:///C:/ci/future_1607568713721/work
-greenlet @ file:///D:/bld/greenlet_1628272284766/work
-gunicorn==20.1.0
-icecream @ file:///home/conda/feedstock_root/build_artifacts/icecream_1624442595266/work
-idna @ file:///home/conda/feedstock_root/build_artifacts/idna_1609836280497/work
-itsdangerous @ file:///home/conda/feedstock_root/build_artifacts/itsdangerous_1621360792037/work
-jdcal @ file:///Users/ktietz/demo/mc3/conda-bld/jdcal_1630584345063/work
-Jinja2 @ file:///home/conda/feedstock_root/build_artifacts/jinja2_1621419064915/work
-jmespath @ file:///home/conda/feedstock_root/build_artifacts/jmespath_1589369830981/work
-joblib @ file:///home/conda/feedstock_root/build_artifacts/joblib_1612898609989/work
-kiwisolver @ file:///D:/bld/kiwisolver_1630173900105/work
-MarkupSafe @ file:///D:/bld/markupsafe_1621455953770/work
-matplotlib @ file:///D:/bld/matplotlib-suite_1632416853110/work
-menuinst @ file:///D:/bld/menuinst_1631688888624/work
-mkl-service==2.4.0
-numexpr @ file:///C:/ci/numexpr_1618856728739/work
-numpy @ file:///D:/bld/numpy_1629092210914/work
-olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
-openpyxl @ file:///tmp/build/80754af9/openpyxl_1615411699337/work
-packaging @ file:///home/conda/feedstock_root/build_artifacts/packaging_1625323647219/work
-pandas @ file:///C:/ci/pandas_1632920064135/work
-Pillow @ file:///D:/bld/pillow_1630696802041/work
-plotly @ file:///home/conda/feedstock_root/build_artifacts/plotly_1630471917451/work
-psycopg2 @ file:///D:/bld/psycopg2-split_1623910198337/work
-pyaml==20.4.0
-pycosat @ file:///D:/bld/pycosat_1610095047168/work
-pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1593275161868/work
-Pygments @ file:///home/conda/feedstock_root/build_artifacts/pygments_1629119114968/work
+plotly=5.3.1
 pymoo==0.5.0
-pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1608055815057/work
-pyparsing==2.4.7
-PySocks @ file:///D:/bld/pysocks_1610291737679/work
-python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
-pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1612179539967/work
-pywin32==227
-PyYAML==5.4.1
-requests @ file:///home/conda/feedstock_root/build_artifacts/requests_1626393743643/work
-ruamel-yaml-conda @ file:///D:/bld/ruamel_yaml_1611943595088/work
-s3transfer @ file:///home/conda/feedstock_root/build_artifacts/s3transfer_1626384238958/work
-scikit-learn @ file:///C:/ci/scikit-learn_1622739499047/work
-scikit-optimize @ file:///home/conda/feedstock_root/build_artifacts/scikit-optimize_1599212891685/work
-scipy @ file:///C:/bld/scipy_1628206525580/work
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1620240208055/work
-SQLAlchemy @ file:///C:/ci/sqlalchemy_1626948551162/work
-tenacity @ file:///home/conda/feedstock_root/build_artifacts/tenacity_1626090218611/work
-threadpoolctl @ file:///home/conda/feedstock_root/build_artifacts/threadpoolctl_1626092076920/work
-tornado @ file:///D:/bld/tornado_1610094910414/work
-tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1632160078689/work
-urllib3 @ file:///home/conda/feedstock_root/build_artifacts/urllib3_1632350318291/work
-websocket-client @ file:///D:/bld/websocket-client_1610127841699/work
-Werkzeug @ file:///home/conda/feedstock_root/build_artifacts/werkzeug_1621518206714/work
-win-inet-pton @ file:///D:/bld/win_inet_pton_1610147566412/work
-wincertstore==0.2
+gunicorn # for app deployment
+
