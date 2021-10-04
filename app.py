@@ -519,9 +519,10 @@ wc = WebComponents(data=data)
 # Building and Location Selection
 
 # Set up app and use standard BOOTSTRAP theme.
-app = dash.Dash("Example",
+app = dash.Dash(__name__,
                 external_stylesheets=[dbc.themes.SIMPLEX]
                 )
+server = app.server
 
 # Basic HTMl Bootstrap / Layout
 app.layout = dbc.Container(fluid=True, children=[
