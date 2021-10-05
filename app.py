@@ -505,7 +505,7 @@ class WebComponents:
             scatter_graph = px.box()
             scatter_graph.layout.annotations = [dict(text='filtering results in empty dataframe', showarrow=False)]
         else:
-            scatter_graph = px.box( pc_filtered_data, x='baseline_necb_tier', y='cost_equipment_total_cost_per_m_sq',points="all")
+            scatter_graph = px.box( pc_filtered_data, x='baseline_necb_tier', y='baseline_difference_cost_equipment_total_cost_per_m_sq',points="all")
 
         return scatter_graph
 
