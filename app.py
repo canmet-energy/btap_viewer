@@ -9,10 +9,13 @@ from sklearn.preprocessing import LabelEncoder
 import copy
 import os
 
+# Change path to your idp output excel file.
+EXCEL_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data','FullServiceRestaurant.xlsx')
+
 class Data:
     def __init__(self):
         # Enter in the full path to your Excel analysis output file.
-        OUTPUT_XLSX =os.path.join(os.path.dirname(os.path.realpath(__file__)), 'data','FullServiceRestaurant.xlsx')
+        OUTPUT_XLSX = EXCEL_FILE
         # Variable to store the para cords state.
         self.par_coord_data = None
         # Variable to store scatter graph inputs.
@@ -117,6 +120,7 @@ class Data:
         # column. The new column will have the suffix
         # '_code' as the name
         for col_name in [col for col, dt in self.df.dtypes.items() if dt == object]:
+            self.df[col_name] = self.df[col_name].astype(str)
             if not col_name in ['run_options']:
                 self.df[f'{col_name}_code'] = LabelEncoder().fit_transform(self.df[col_name])
 
@@ -262,7 +266,8 @@ class Data:
     def get_sensitivity_scenarios(self):
         #filter by analsys type sensitivity and then return unique :scenario values.
         df = self.df.loc[self.df[':algorithm_type'] == 'sensitivity']
-        return [{'label': d, 'value': d} for d in df[':scenario'].unique().tolist()]
+        result = [{'label': d, 'value': d} for d in df[':scenario'].unique().tolist()]
+        return result
 
     def get_primary_heating_fuels(self):
         return [{'label': d, 'value': d} for d in self.df[':primary_heating_fuel'].unique().tolist()]
@@ -289,10 +294,10 @@ class WebComponents:
     #### Design Criteria Controls####
     def design_criteria_chart_pc(self):
         # If no data show nothing.
-        if self.data.df.index.empty:
+        if self.data.get_opt_df().index.empty:
             # If empty, let user know and create blank figure.
             scatter_graph = px.scatter()
-            scatter_graph.layout.annotations = [dict(text='empty dataframe', showarrow=False)]
+            scatter_graph.layout.annotations = [dict(text='No optimization runs available', showarrow=False)]
             return scatter_graph
 
         # Creates new figure.
@@ -342,7 +347,7 @@ class WebComponents:
         if pc_filtered_data.index.empty:
             # If empty, let user know and create blank figure.
             scatter_graph = px.scatter()
-            scatter_graph.layout.annotations = [dict(text='filtering results in empty dataframe', showarrow=False)]
+            scatter_graph.layout.annotations = [dict(text='No optimization solution available', showarrow=False)]
         else:
             scatter_graph = px.scatter(
                 data_frame=pc_filtered_data,
@@ -439,6 +444,16 @@ class WebComponents:
 
     #### Sensitivity Controls
     def sensitivity_figure(self, id='sensitivity_xy_scatter'):
+        sens_df = copy.deepcopy(self.data.df)
+        # Filter by :analysis_name = elimination
+        # :scenario
+        sens_df = sens_df.loc[sens_df[':algorithm_type'] == 'sensitivity']
+        if sens_df.empty:
+            fig = px.bar()
+            fig.layout.annotations = [dict(text='Sensitivity data not available.', showarrow=False)]
+            return fig
+
+
         sensitivity_scenarios_dropdown = self.data.input_sensitivity_scenario_dropdown
         sensitivity_stacked_variables_dropdown = self.data.input_sensitivity_stacked_variables_dropdown
 
@@ -483,10 +498,16 @@ class WebComponents:
         fig.update_layout(xaxis={'categoryorder': 'total descending'})
         return fig
     def sensitivity_scenario_dd(self):
-        return dbc.Form([dbc.Label("Sensitivity Variable"),
-                                           dcc.Dropdown(id='input_sensitivity_scenario_dropdown',
-                                                        options=self.data.get_sensitivity_scenarios(),
-                                                        value=self.data.get_sensitivity_scenarios()[0]["value"])])
+        if self.data.get_sensitivity_scenarios():
+            return dbc.Form([dbc.Label("Sensitivity Variable"),
+                                               dcc.Dropdown(id='input_sensitivity_scenario_dropdown',
+                                                            options=self.data.get_sensitivity_scenarios(),
+                                                            value=self.data.get_sensitivity_scenarios()[0]["value"])])
+        else:
+            return dbc.Form([dbc.Label("Sensitivity Variable"),
+                                               dcc.Dropdown(id='input_sensitivity_scenario_dropdown',
+                                                            options=[],
+                                                            value=[])])
     def sensitivity_stacked_dd(self):
         return dbc.Form([dbc.Label("Stacked Variables"),
                                           dcc.Dropdown(id='input_sensitivity_stacked_dropdown',
@@ -503,9 +524,9 @@ class WebComponents:
         if pc_filtered_data.index.empty:
             # If empty, let user know and create blank figure.
             scatter_graph = px.box()
-            scatter_graph.layout.annotations = [dict(text='filtering results in empty dataframe', showarrow=False)]
+            scatter_graph.layout.annotations = [dict(text='no optimization results available', showarrow=False)]
         else:
-            scatter_graph = px.box( pc_filtered_data, x='baseline_necb_tier', y='baseline_difference_cost_equipment_total_cost_per_m_sq',points="all")
+            scatter_graph = px.box( pc_filtered_data, x='baseline_necb_tier', y='cost_equipment_total_cost_per_m_sq',points="all")
 
         return scatter_graph
 
@@ -595,6 +616,7 @@ def update_graphs(restyledata,
                           input_sensitivity_scenario_dropdown=input_sensitivity_scenario_dropdown,
                           input_sensitivity_stacked_dropdown=input_sensitivity_stacked_dropdown)
 
+
     return [
         wc.data_analysis_fig(),  # Scatter figure
         data.get_spreadsheet_data().to_dict('records'),  # Update Datatable with records that may be filtered.
@@ -604,7 +626,6 @@ def update_graphs(restyledata,
         wc.sensitivity_figure(),
         wc.tier_costs_figure()
     ]
-
 
 if __name__ == '__main__':
     app.run_server(debug=True)
